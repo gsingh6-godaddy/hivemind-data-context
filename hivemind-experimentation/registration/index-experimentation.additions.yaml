@@ -1,0 +1,21 @@
+# Proposed additions to knowledge_wiki/global/index/experimentation.yaml
+# Not live. Append these under `entries:` when the files move into knowledge_wiki/global/ after bounded-context review.
+# Paths are relative to knowledge_wiki/global/ (the use-case files go to use-cases/experimentation/).
+
+  - entry_id: experimentation-hm-did-it-work
+    type: use-case
+    match: { intent: hm_verdict }
+    path: use-cases/experimentation/experimentation-hm-did-it-work.md
+    status: DETERMINISTIC
+    summary: "Did Hivemind experiment X win? Path A verdict on the latest report, Path B significance on the last report before rollout plus flicker (run-time gaps >36h), Path C full readout (hypothesis, owners, dates, every scorecard metric). rollout_mst_ts is UTC. Declines roll-out recommendations, post-rollout durability and segment winners."
+    tables: [hivemind_mart.analysis_result_cln, hivemind_mart.experiment_metadata_snap]
+    alt_intents: [hm_significance_history, hm_readout, did_experiment_win, significant_before_rollout, result_flicker, experiment_readout]
+
+  - entry_id: experimentation-hm-whats-it-worth
+    type: use-case
+    match: { intent: hm_igcr_lookup }
+    path: use-cases/experimentation/experimentation-hm-whats-it-worth.md
+    status: DETERMINISTIC
+    summary: "What is Hivemind experiment X worth? Path A governed iGCR (annualization_value, discount already applied; overall vs product-level metric), Path B $ per user and per day (pair basis and all-cohort for 3+ arms), Path C product-line x new/renewal x term GCR decomposition from one experiment_order partition. Declines $ for rate metrics, prorated iGCR since rollout and iGCR recompute."
+    tables: [hivemind_mart.analysis_result_cln, hivemind_mart.experiment_metadata_snap, hivemind_mart.experiment_order]
+    alt_intents: [hm_daily_dollar_impact, hm_product_line_gcr, experiment_igcr_value, lift_dollars_per_day, gcr_by_product_line, annualized_igcr_lookup]

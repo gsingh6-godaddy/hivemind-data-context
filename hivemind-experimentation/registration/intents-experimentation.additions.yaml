@@ -1,0 +1,34 @@
+# Proposed additions to knowledge_wiki/global/vocabulary/intents/experimentation.yaml
+# Not live. Append these under `intents:` after bounded-context review.
+# Overlap to resolve at merge time: the existing `scorecard` and `rollout_decision` intents share aliases
+# such as "did the experiment win". Reviewers should decide which entry owns those aliases.
+
+  - id: hm_verdict
+    type: use-case
+    aliases: ["did experiment X win", "did the test win", "is the lift significant", "lift per variant", "what is the verdict for", "decision metric result for"]
+    description: "Decision-metric verdict on the latest Hivemind report for one experiment (experimentation-hm-did-it-work, Path A)"
+
+  - id: hm_significance_history
+    type: use-case
+    aliases: ["was it still significant before rollout", "significant on the last report before rollout", "did the result flicker", "significance history", "was the win stable"]
+    description: "Significance on the last report before rollout and flicker across report runs (experimentation-hm-did-it-work, Path B)"
+
+  - id: hm_readout
+    type: use-case
+    aliases: ["full readout for", "experiment readout", "what was tested and what did the scorecard show", "hypothesis owners dates and metrics", "summarize experiment"]
+    description: "Full experiment readout: hypothesis, owners, dates, cohorts and every scorecard metric (experimentation-hm-did-it-work, Path C)"
+
+  - id: hm_igcr_lookup
+    type: use-case
+    aliases: ["what iGCR did X deliver", "governed iGCR for", "annualized value of experiment", "why is there no iGCR", "what metric was annualized", "is the iGCR overall or product level"]
+    description: "Governed annualized iGCR lookup for one experiment (experimentation-hm-whats-it-worth, Path A)"
+
+  - id: hm_daily_dollar_impact
+    type: use-case
+    aliases: ["what is the lift worth per day", "dollars per user", "daily dollar value of the lift", "GCR lift per day", "how much money per day"]
+    description: "Dollar value of a GCR lift per user and per day (experimentation-hm-whats-it-worth, Path B)"
+
+  - id: hm_product_line_gcr
+    type: use-case
+    aliases: ["where did the GCR difference come from", "which product lines explain the gap", "new vs renewal GCR split", "GCR by product line for experiment", "product line breakdown of GCR"]
+    description: "Product-line x new/renewal x term GCR decomposition for one experiment (experimentation-hm-whats-it-worth, Path C)"
