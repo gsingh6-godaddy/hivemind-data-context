@@ -24,6 +24,8 @@ Each file routes a question to a path (A, B or C) and gives the SQL, the interpr
 
 All tests were blind. An agent could read only the files under test and run read-only Redshift SQL. A separate grader then compared every value against Hivemind MCP, the system of record, on 2026-11-13.
 
+The full list of questions, the verified answer for each and the per-question results are in **[EVAL_QUESTIONS.md](EVAL_QUESTIONS.md)**.
+
 | Test | Result |
 |---|---|
 | 24 golden questions for the 2 use cases (12 each, including 6 that the agent should decline), using the use-case and table files | **24 / 24 match Hivemind MCP** |
